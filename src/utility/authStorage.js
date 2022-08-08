@@ -36,15 +36,15 @@ const removeShop = () => {
   localStorage.removeItem(SHOP_KEY);
 };
 //================ BOTH =====================
-const store = (user, token,shop) => {
+const store = (user, token) => {
   storeUser(user);
   storeToken(token);
-  storeShop(shop)
+ 
 };
 const remove = () => {
   removeToken();
   removeUser();
-  removeShop();
+
 };
 const get = () => {
   return {

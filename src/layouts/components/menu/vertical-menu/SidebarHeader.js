@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Disc, X, Circle } from "react-feather";
 import classnames from "classnames";
-import Logo_2 from 'assets/img/logo/logo_2.png'
-import smallLogo from 'assets/img/logo/logo_small.png'
+import Logo_2 from 'assets/img/logo/LOGO.png'
+import smallLogo from 'assets/img/logo/LOGO.png'
 import { useDirection } from "utility/context/Layout";
-import { useGetShop } from 'api/shops'
-import { baseURL } from "api/config";
+import { ImageURL } from "api/config";
+import { useAuth } from "redux/hooks/auth";
 const SidebarHeader = ({
   toggleSidebarMenu,
   activeTheme,
@@ -16,9 +16,9 @@ const SidebarHeader = ({
   menuShadow,
 }) => {
 
-  const { data, isLoading } = useGetShop();
-  const shop = data?.shop || {};
-  const image = shop?.shop_image;
+  const { user,isLoading } = useAuth();
+  
+  const image = user?.logo;
   const dir = useDirection();
   const logoStyles =
     dir === "ltr" ? { marginRight: "10rem" } : { marginLeft: "10rem" };
@@ -39,7 +39,7 @@ const SidebarHeader = ({
 
                 }}
               >
-                <img loading="lazy" width="150" src={isLoading ? Logo_2 : `${baseURL}${image}`} alt="" />
+                <img loading="lazy" width="150" src={isLoading ? Logo_2 : `${ImageURL}${image}`} alt="" />
               </div>
             ) : (
               <img loading="lazy" style={{ objectFit: "contain", width: "55px", height: "80px !important", ...logoStyles }} src={smallLogo} alt="" />

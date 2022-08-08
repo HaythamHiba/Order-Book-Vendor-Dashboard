@@ -8,9 +8,9 @@ const normalUser = {
 };
 
 const getInitialState = () => {
-  const { user, token,shop } = authStorage.get();
+  const { user, token } = authStorage.get();
 
-  if (user && token &&shop) {
+  if (user && token ) {
     return {
       user,
       token,

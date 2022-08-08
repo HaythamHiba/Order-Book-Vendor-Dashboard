@@ -11,7 +11,7 @@ export const useUpdateMutation = (key, url) => {
 
   return useMutation(
     async (dataToSend) => {
-      console.log(dataToSend)
+
       const { data } = await axios.post(url, dataToSend);
       return data;
     },

@@ -14,33 +14,28 @@ const CategoryForm = ({ preview, handleImageChange, editMode = false }) => {
       <Col>
         <ValidatedField
           dir="ltr"
-          name="translated_fields[1][category_name]"
+          name="name[en]"
           label={`${t("category_name")} (${t("en")})`}
           placeholder={`${t("category_name")} (${t("en")})`}
         />
         <ValidatedField
           dir="rtl"
-          name="translated_fields[2][category_name]"
+          name="name[ar]"
           label={`${t("category_name")} (${t("ar")})`}
           placeholder={`${t("category_name")} (${t("ar")})`}
         />
-        <ValidatedField
-          name="category_sort"
-          label={t("sort")}
-          placeholder={t("sort")}
-          type="number"
-        />
+   
       </Col>
       <Col>
         <ValidatedField
-          id="category_image"
+          id="image"
           type="file"
           label={t("category_image")}
-          name="category_image"
+          name="image"
           accept="image/*"
           onChange={(e) => {
             handleImageChange(e);
-            formik.setFieldValue("category_image", e.target.files[0]);
+            formik.setFieldValue("image", e.target.files[0]);
           }}
         />
         <ImagePreview preview={preview} />

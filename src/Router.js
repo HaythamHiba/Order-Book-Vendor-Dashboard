@@ -10,8 +10,8 @@ const HomePage = lazy(() => import("./views/pages/home/HomePage"));
 
 const MyAccountPage = lazy(() => import("views/pages/my_account/MyAccount"));
 
-const DiscountsPage=lazy(()=>import("./views/pages/discounts/DicountsPage"))
 const MyShopPage=lazy(()=>import ("./views/pages/my_shop/MyShopPage"))
+const CategoriesPage=lazy(()=>import("./views/pages/categories/CategoriesPage"))
 
 const ViewOneProductPage = lazy(() =>
   import("./views/pages/products/view-one/ViewOneProductPage")
@@ -93,6 +93,12 @@ class AppRouter extends React.Component {
             path="/myAccount"
             component={MyAccountPage}
             isPrivate
+          />
+          <AppRoute
+           exact
+           path="/categories"
+           component={CategoriesPage}
+           isPrivate
           />
                <AppRoute
             exact

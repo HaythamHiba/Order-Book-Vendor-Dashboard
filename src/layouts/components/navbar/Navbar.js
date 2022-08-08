@@ -6,9 +6,12 @@ import { logout } from "../../../redux/actions/auth/loginActions";
 import NavbarBookmarks from "./NavbarBookmarks";
 import NavbarUser from "./NavbarUser";
 import userImg from "assets/img/portrait/small/avatar-s-11.jpg";
+import { useBackendLanguageCode } from "utility/language";
+import { getLanguageAttr } from "helpers/language";
 
 const UserName = (props) => {
-  return props.user?.full_name || "User";
+  const lang_id=useBackendLanguageCode()
+  return getLanguageAttr(props.user.name,lang_id) || "User" ;
 };
 
 const ThemeNavbar = (props) => {

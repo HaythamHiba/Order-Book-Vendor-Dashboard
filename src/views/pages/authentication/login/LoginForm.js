@@ -10,14 +10,13 @@ import { LoadingButton } from "components/input/LoadingButton";
 import { useTranslation } from "utility/language";
 
 const initialValues = {
-  email: "",
+  username: "",
   password: "",
 };
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .email("validation.invalid_email")
-    .required("_required.email"),
+  username: Yup.string()
+    .required("_required.username"),
   password: Yup.string().required("_required.password"),
 });
 
@@ -26,6 +25,7 @@ const LoginForm = (props) => {
   const t = useTranslation();
 
   const handleLogin = (values) => {
+    console.log(values);
     login(values);
   };
 
@@ -44,10 +44,10 @@ const LoginForm = (props) => {
           {(formik) => (
             <Form>
               <ValidatedField
-                name="email"
-                type="email"
-                label={t("email")}
-                placeholder={t("email")}
+                name="username"
+                type="text"
+                label={t("username")}
+                placeholder={t("username")}
                 formProps={{
                   style: { marginBottom: "2px" },
                 }}

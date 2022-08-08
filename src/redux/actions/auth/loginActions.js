@@ -5,11 +5,11 @@ import _axios from "axios";
 import { authStorage } from "utility/authStorage";
 
 const API = {
-  LOGIN: `/api/vendor/login`,
+  LOGIN: `/login`,
   LOGOUT: `/api/vendor/logout`,
 };
 
-export const login = ({ email, password }) => {
+export const login = ({ username, password }) => {
   const axios = _axios.create({
     baseURL,
   });
@@ -18,17 +18,19 @@ export const login = ({ email, password }) => {
       type: "START_LOGIN",
     });
     axios
-      .post(API.LOGIN, { email, password })
+      .post(API.LOGIN, { username, password })
       .then((response) => {
-        const { data } = response.data;
-        if (data && data.token) {
-          const { token, user,shop } = data;
+        
+        const { data,meta } = response.data;
+        if (data && meta.access_token) {
+          const user=data;
+          const token=meta.access_token;
 
-          authStorage.store(user, token,shop);
+          authStorage.store(user, token);
 
           dispatch({
             type: "LOGIN",
-            payload: { user, token,shop },
+            payload: { user, token },
           });
 
           history.push("/");
@@ -38,7 +40,7 @@ export const login = ({ email, password }) => {
         }
       })
       .catch((err) => {
-        toast.error(err?.response?.data?.message || "Failed To Login");
+        toast.error(err?.response?.message || "Failed To Login");
         dispatch({
           type: "END_LOGIN",
         });

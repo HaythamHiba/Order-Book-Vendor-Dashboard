@@ -1,3 +1,4 @@
-export const baseURL = `https://api.malnokhba.qa`;
-export const websiteURL = "https://elite-auction.vercel.app";
+export const baseURL = `http://order-book.chi-team.com/vendor`;
+export const ImageURL=`http://order-book.chi-team.com`
+
 
