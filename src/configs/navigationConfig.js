@@ -5,8 +5,9 @@ import { Home } from "react-feather";
 import { BsShop } from "react-icons/bs";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
+import {  MdOutlineCategory } from "react-icons/md";
+import RestaurantIcon from '@mui/icons-material/Restaurant';
 
 const navigationConfig = [
   {
@@ -39,11 +40,18 @@ const navigationConfig = [
     navLink: "/categories",
   },
   {
-    id: "products",
-    title: "products",
+    id: "subcategories",
+    title: "subcategories",
     type: "item",
-    icon: <AiOutlineShoppingCart size={20} />,
-    navLink: "/products/view-all"
+    icon: <MdOutlineCategory size={20} />,
+    navLink: "/subcategories",
+  },
+  {
+    id: "items",
+    title: "items",
+    type: "item",
+    icon: <RestaurantIcon size={20} />,
+    navLink: "/items/view-all"
 
   },
 

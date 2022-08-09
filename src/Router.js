@@ -12,8 +12,9 @@ const MyAccountPage = lazy(() => import("views/pages/my_account/MyAccount"));
 
 const MyShopPage=lazy(()=>import ("./views/pages/my_shop/MyShopPage"))
 const CategoriesPage=lazy(()=>import("./views/pages/categories/CategoriesPage"))
+const SubCategoriesPage=lazy(()=>import("./views/pages/subcategories/SubCategoriesPage"))
 
-const ViewOneProductPage = lazy(() =>
+const ViewOneItemPage = lazy(() =>
   import("./views/pages/products/view-one/ViewOneProductPage")
 );
 const AddProductPage = lazy(() =>
@@ -100,22 +101,28 @@ class AppRouter extends React.Component {
            component={CategoriesPage}
            isPrivate
           />
+          <AppRoute
+           exact
+           path="/subcategories"
+           component={SubCategoriesPage}
+           isPrivate
+          />
                <AppRoute
             exact
-            path="/products/add"
+            path="/items/add"
             component={AddProductPage}
             isPrivate
           />
           <AppRoute
             exact
-            path="/products/view-all"
+            path="/items/view-all"
             component={ViewAllProductsPage}
             isPrivate
           />
           <AppRoute
             exact
-            path="/products/view-one/:id"
-            component={ViewOneProductPage}
+            path="/items/view-one/:id/category/:category_id"
+            component={ViewOneItemPage}
             isPrivate
           />
         

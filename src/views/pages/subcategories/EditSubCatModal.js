@@ -3,39 +3,32 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Button } from "reactstrap";
 import { useTranslation } from "utility/language";
 import { LoadingButton } from "components/input/LoadingButton";
-import { useUpdateSubCategory } from "api/subcategories";
-import SubCategoryForm from "./SubCategoryForm";
 import { Formik, Form } from "formik";
 import { useImagePreview } from "hooks";
-import { baseURL } from "api/config";
+import {  ImageURL } from "api/config";
 
 import {
   getInitialValues,
   getValidationSchema,
   getDataToSend,
 } from "./formUtils";
+import { useUpdateSubcategory } from "api/subcategories";
+import SubCategoryForm from "./SubCategoryForm";
 
-const EditSubCatModal = ({
-  isOpen,
-  setIsOpen,
-  objectToEdit,
-  setObjectToEdit,
-}) => {
+const EditSubCatModal = ({ isOpen, setIsOpen, objectToEdit, setObjectToEdit }) => {
   const t = useTranslation();
-  const {
-    mutate: updateSubCategory,
-    isLoading,
-    isSuccess,
-  } = useUpdateSubCategory();
+  const { mutate: updateSubCategory, isLoading, isSuccess } = useUpdateSubcategory(objectToEdit?.id);
 
-  const subcategory_image = objectToEdit?.subcategory_image;
+  const category_image = objectToEdit?.image;
   const { preview, handleImageChange, setPreview } =
-    useImagePreview(subcategory_image);
+    useImagePreview(category_image);
 
   const handleSubmit = (values) => {
     updateSubCategory(
-      getDataToSend({ ...values, subcategory_id: objectToEdit.id })
-    );
+      
+      getDataToSend({ ...values}),
+      
+      );
   };
 
   React.useEffect(() => {
@@ -45,9 +38,9 @@ const EditSubCatModal = ({
   }, [isSuccess, setIsOpen]);
   React.useEffect(() => {
     if (isOpen) {
-      setPreview(`${baseURL}${subcategory_image}`);
+      setPreview(`${ImageURL}${category_image}`);
     }
-  }, [isOpen, setPreview, subcategory_image]);
+  }, [isOpen, setPreview, category_image]);
 
   return (
     <Modal centered isOpen={isOpen} size="lg">

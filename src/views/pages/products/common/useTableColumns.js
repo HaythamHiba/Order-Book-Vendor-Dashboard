@@ -1,77 +1,60 @@
 import React, { useMemo } from "react";
-import { useBackendLanguageCode, useTranslation } from "utility/language";
+import { useTranslation } from "utility/language";
 import { history } from "../../../../history";
-import { mapTranslatedProperties } from "helpers/language";
-import { ToggleStatus } from "components/ToggleStatus";
+
 import HovarableImage from "components/HovarableImage";
-import { baseURL } from "api/config";
+import { ImageURL } from "api/config";
 import { GrView } from "react-icons/gr";
+import { getLanguageAttr } from "helpers/language";
 
-const navigateToDetails = (id) => {
+const navigateToDetails = (id,category_id) => {
 
 
-    history.push(`/products/view-one/${id}`);
+    history.push(`/items/view-one/${id}/category/${category_id}`);
   
 };
 
-const useTableColumns = ({ toggleMutation, additionalColumns = [] }) => {
+const useTableColumns = ({ toggleMutation}) => {
   const t = useTranslation();
-  const languageCode = useBackendLanguageCode();
 
   return useMemo(
     () => [
-      
-      {
-        name: t("sort"),
-        selector: "product_sort",
-        sortable: true,
-        center: true,
-        width: "50px",
-      },
+
       {
         name: t("image"),
         sortable: false,
         center: true,
         cell: (row) => (
           <HovarableImage
-            id={`product_main_image_${row.id}`}
-            src={`${baseURL}${row.product_main_image}`}
+            id={`itam_image_${row.id}`}
+            src={`${ImageURL}${row.image}`}
             width="35"
           />
         ),
       },
       {
-        name: t("name"),
+        name: `${t("name")} (${t("en")})`,
         sortable: false,
         center: true,
         cell: (row) =>
-          mapTranslatedProperties(
-            row.product_details,
-            "product_name",
-            languageCode
-          ),
+          getLanguageAttr(row.name, 0),
+      },
+      {
+        name: `${t("name")} (${t("ar")})`,
+        sortable: false,
+        center: true,
+        cell: (row) =>
+          getLanguageAttr(row.name, 1),
       },
       {
         name: t("price"),
-        selector: "product_price",
+        selector: "price",
         sortable: true,
         center: true,
       },
-      {
-        name: t("quantity"),
-        selector: "product_quantity",
-        sortable: true,
-        center: true,
-      },
-      ...additionalColumns,
-      {
-        name: t("status"),
-        sortable: false,
-        center: true,
-        cell: (row) => (
-          <ToggleStatus object={row} toggleMutation={toggleMutation} />
-        ),
-      },
+    
+ 
+      
       {
         name: "",
         selector: "action",
@@ -79,14 +62,14 @@ const useTableColumns = ({ toggleMutation, additionalColumns = [] }) => {
         center: true,
         cell: (row) => (
           <GrView
-            onClick={() => navigateToDetails(row.id)}
+            onClick={() => navigateToDetails(row.id,row.category_id)}
             size={22}
             style={{ cursor: "pointer" }}
           />
         ),
       },
     ],
-    [t, languageCode, additionalColumns, toggleMutation]
+    [t]
   );
 };
 

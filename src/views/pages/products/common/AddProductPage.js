@@ -13,23 +13,20 @@ import useFormTabs from "./utils/useFormTabs";
 
 import PropTypes from "prop-types";
 
-import ProgressBar from "components/ProgressBar";
 
 const navigateToAllProducts = () => {
  
 
-    history.push(`/products/view-all`);
+    history.push(`/items/view-all`);
   
 };
 
-const AddProductPage = ({ mutation }) => {
+const AddItemPage = ({ mutation }) => {
   const t = useTranslation();
   const {
-    mutate: addProduct,
+    mutate: addItem,
     isLoading,
     isSuccess,
-    isError,
-    percentCompleted,
   } = mutation;
 
   React.useEffect(() => {
@@ -44,14 +41,19 @@ const AddProductPage = ({ mutation }) => {
     const data={...values}
     const formData = new FormData();
     buildFormData(formData, data);
-    addProduct(formData);
+    addItem({
+      dataToSend:formData,
+      varsObj:{
+        categories:values.category_id
+      }
+    });
   };
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>
-          {t("add_product")} 
+          {t("add_item")} 
         </CardTitle>
         <Button
           color="primary"
@@ -71,12 +73,7 @@ const AddProductPage = ({ mutation }) => {
             <Form>
               <Tabs tabs={tabs} />
 
-              <ProgressBar
-                value={percentCompleted}
-                isLoading={isLoading}
-                isError={isError}
-                isSuccess={isSuccess}
-              />
+           
               <div className="d-flex justify-content-center align-items-center">
                 <LoadingButton
                   type="submit"
@@ -94,8 +91,8 @@ const AddProductPage = ({ mutation }) => {
   );
 };
 
-AddProductPage.propTypes = {
+AddItemPage.propTypes = {
   mutation: PropTypes.object.isRequired,
 };
 
-export default AddProductPage;
+export default AddItemPage;

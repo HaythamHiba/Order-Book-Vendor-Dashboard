@@ -4,45 +4,40 @@ import { useTranslation } from "utility/language";
 import { Formik, Form } from "formik";
 import Tabs from "components/Tabs";
 import {
+  getDataToSend,
   getInitialValues,
   getValidationSchema,
 } from "../common/utils/formSchema";
 import useFormTabs from "../common/utils/useFormTabs";
 import { LoadingButton } from "components/input/LoadingButton";
 
-import { useUpdateDetailsMutation, useDeleteProduct } from "api/products";
+import { useUpdateDetailsMutation, useDeleteItem } from "api/items";
 import { buildFormData } from "api/helpers";
 import { history } from "../../../../history";
 import confirmAlert from "extensions/confirm-alert";
 import { useTranslatedLabels } from "extensions/confirm-alert/useTranslatedLabels";
 import { useIsAuthorized } from "redux/hooks/auth";
 
-const ProductDetails = ({ product,
-  commentQuery,
-  reviewsQuery,
-  commentMuation,
-  reviewsMutation }) => {
+const ProductDetails = ({ product }) => {
   const t = useTranslation();
   const confirmOptions = useTranslatedLabels();
-  const tabs = useFormTabs(true,commentQuery,
-    reviewsQuery,
-    commentMuation,
-    reviewsMutation,);
-  const updateDetailsMutation = useUpdateDetailsMutation();
-  const deleteMutation = useDeleteProduct();
+  const tabs = useFormTabs(true);
+  const updateDetailsMutation = useUpdateDetailsMutation(product?.category_id,product?.id);
+  const deleteMutation = useDeleteItem();
   const isAuthorized = useIsAuthorized();
 
   React.useEffect(() => {
-    if (deleteMutation.isSuccess) {
-      history.replace(`/products/view-all`);
+    if (deleteMutation.isSuccess || updateDetailsMutation.isSuccess) {
+      history.replace(`/items/view-all`);
     }
-  }, [deleteMutation.isSuccess]);
+  }, [deleteMutation.isSuccess,updateDetailsMutation.isSuccess]);
 
   const handleDelete = () => {
     confirmAlert({
       onConfirm: () => {
         deleteMutation.mutate({
-          id: product.id,
+          categories: product.category_id,
+          items:product.id
         });
       },
       ...confirmOptions,
@@ -50,15 +45,16 @@ const ProductDetails = ({ product,
   };
 
   const handleSubmit = (values) => {
+    const dataToSend=getDataToSend(values);
     const formData = new FormData();
-    buildFormData(formData, { product_id: product.id, ...values, shop_id: 1 });
+    buildFormData(formData, { ...dataToSend });
     updateDetailsMutation.mutate(formData);
   };
 
   return (
     <Card>
       <CardHeader className="d-flex justify-content-between align-items-center">
-        <CardTitle>{t("product")}</CardTitle>
+        <CardTitle>{t("item")}</CardTitle>
         {isAuthorized && (
           <LoadingButton
             color="danger"

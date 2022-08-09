@@ -12,7 +12,6 @@ import AddCatModal from "./AddCatModal";
 import EditCatModal from "./EditCatModal";
 import { TableSpinner } from "views/components/TableSpinner";
 import { useIsAuthorized } from "redux/hooks/auth";
-import { addPathVariablesToUrl } from "api/helpers/addPathVariablesToUrl";
 
 const CategoriesPage = () => {
   const t = useTranslation();
@@ -44,10 +43,7 @@ const CategoriesPage = () => {
       }
     }
   }, [searchText, data]);
-  addPathVariablesToUrl({
-      categories:1,
-      items:2
-  },"/delete")
+ 
 
   return (
     <>

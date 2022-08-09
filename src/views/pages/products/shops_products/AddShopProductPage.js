@@ -2,10 +2,10 @@ import React from "react";
 
 import AddProductPage from "../common/AddProductPage";
 
-import { useAddProduct } from "api/products";
+import { useAddItem } from "api/items";
 
 const AddShopProductPage = () => {
-  const mutation = useAddProduct();
+  const mutation = useAddItem();
   return (
       <AddProductPage mutation={mutation} />
   );

@@ -1,30 +1,33 @@
 import React from "react";
 import { useBackendLanguageCode } from "utility/language/useLanguageCode";
-import { mapTranslatedProperties } from "helpers/language";
-import { useGetSubCategories } from "api/subcategories";
 import { useTranslation } from "utility/language";
+import { getLanguageAttr } from "helpers/language";
+import { useGetSubcategories } from "api/subcategories";
 
-const useSubCategoryOptions = ({ withAllOption = false } = {}) => {
+const useSubCategoryOptions = ({ withAllOption = false } = {},category_id) => {
   const languageCode = useBackendLanguageCode();
-  const { data: subcategories_data } = useGetSubCategories();
-  const subcategories = subcategories_data?.subcategories || [];
+  const { data } = useGetSubcategories({parent_id:category_id});
+  
   const t = useTranslation();
 
   return React.useMemo(() => {
-    const options = subcategories.map((subcategory) => ({
-      value: subcategory.id,
-      label: mapTranslatedProperties(
-        subcategory.subcategory_details,
-        "subcategory_name",
-        languageCode
-      ),
-      category_id: subcategory.category_id,
-    }));
+    let options = [];
+    if (data && data && Array.isArray(data)) {
+      options = data.map((subCat) => ({
+        value: subCat.id,
+        label: getLanguageAttr(
+          subCat.name,
+          
+          languageCode
+        ),
+      }));
+    }
+
     if (withAllOption) {
       return [{ label: t("all"), value: null }, ...options];
     }
     return options;
-  }, [subcategories, languageCode, withAllOption, t]);
+  }, [data, languageCode, withAllOption, t]);
 };
 
 export default useSubCategoryOptions;

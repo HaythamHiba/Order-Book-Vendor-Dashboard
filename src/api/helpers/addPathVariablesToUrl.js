@@ -1,4 +1,4 @@
-export const addPathVariablesToUrl=(VarsObjects,endPoint)=>{
+export const addPathVariablesToUrl=(VarsObjects,endPoint="")=>{
     if(!Array.isArray(Object.entries(VarsObjects))) return "";
     if(Object.entries(VarsObjects).length===0) return "";
     let prefixUrl="";

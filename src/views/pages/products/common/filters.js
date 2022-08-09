@@ -1,7 +1,2 @@
-export const filterProductsBasedOnSearch = (products, searchText) =>
-  products.filter((product) =>
-    product.product_details.some(({ product_name }) =>
-      product_name.toLowerCase().includes(searchText.toLowerCase())
-    )
-  );
-
+export const filterItemsBasedOnSearch = (items, searchText) =>
+items.filter((item) =>Object.values(item.name).some(name=> name.toLowerCase().includes(searchText.toLowerCase())));

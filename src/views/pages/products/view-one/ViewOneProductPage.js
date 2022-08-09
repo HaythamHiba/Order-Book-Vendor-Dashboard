@@ -1,24 +1,21 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useGetShopProductComments, useGetShopProductReviews, useGetSingleProduct, useUpdateShopProductCommentStatus, useUpdateShopProductReviewsStatus } from "api/products";
+import {  useGetSingleItem } from "api/items";
 import { Spinner } from "reactstrap";
 import CustomCard from "views/components/CustomCard";
 import { useTranslation } from "utility/language";
 import ProductDetails from "./ProductDetails";
-import AdditionalImages from "./AdditionalImages";
+// import AdditionalImages from "./AdditionalImages";
 // import ProductTabs from "./ProductTabs";
 
 
 const ViewOneProductPage = () => {
   const t = useTranslation();
-  const { id } = useParams();
-  const { data, isLoading } = useGetSingleProduct({ product_id: id });
-  const commentQuery = useGetShopProductComments;
-  const reviewsQuery = useGetShopProductReviews;
-  const commentMuation = useUpdateShopProductCommentStatus();
-  const reviewsMutation = useUpdateShopProductReviewsStatus();
+  const { id,category_id } = useParams();
+  const { data, isLoading } = useGetSingleItem(category_id,id);
 
-  const product = data?.product || {};
+
+  const product = data?data:  {};
 
   if (isLoading) {
     return (
@@ -37,12 +34,9 @@ const ViewOneProductPage = () => {
   return (
     <>
       <ProductDetails
-       commentQuery={commentQuery}
-        reviewsQuery={reviewsQuery}
-        commentMuation={commentMuation}
-        reviewsMutation={reviewsMutation}
+
          product={product} />
-      <AdditionalImages product={product} />
+      {/* <AdditionalImages product={product} /> */}
       {/* <ProductTabs
         commentQuery={commentQuery}
         reviewsQuery={reviewsQuery}

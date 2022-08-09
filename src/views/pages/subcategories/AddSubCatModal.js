@@ -3,20 +3,20 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Button } from "reactstrap";
 import { useTranslation } from "utility/language";
 import { LoadingButton } from "components/input/LoadingButton";
-import { useAddSubCategory } from "api/subcategories";
-import SubCategoryForm from "./SubCategoryForm";
 import { Formik, Form } from "formik";
 import { useImagePreview } from "hooks";
 
 import {
-  getDataToSend,
   getInitialValues,
   getValidationSchema,
+  getDataToSend,
 } from "./formUtils";
+import { useAddSubcategory } from "api/subcategories";
+import SubCategoryForm from "./SubCategoryForm";
 
 const AddSubCatModal = ({ isOpen, setIsOpen }) => {
   const t = useTranslation();
-  const { mutate: addSubCategory, isLoading, isSuccess } = useAddSubCategory();
+  const { mutate: addSubCategory, isSuccess, isLoading } = useAddSubcategory();
   const { preview, handleImageChange, setPreview } = useImagePreview(null);
 
   const handleSubmit = (values) => {
