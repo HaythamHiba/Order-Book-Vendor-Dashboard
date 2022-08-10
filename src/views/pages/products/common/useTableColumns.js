@@ -7,10 +7,12 @@ import { ImageURL } from "api/config";
 import { GrView } from "react-icons/gr";
 import { getLanguageAttr } from "helpers/language";
 
-const navigateToDetails = (id,category_id) => {
+const navigateToDetails = (row) => {
+   const item_id=row.id;
+    const category_id=row?.sub_category_id || row.category_id;
+ 
 
-
-    history.push(`/items/view-one/${id}/category/${category_id}`);
+    history.push(`/items/view-one/${item_id}/category/${category_id}`);
   
 };
 
@@ -62,7 +64,7 @@ const useTableColumns = ({ toggleMutation}) => {
         center: true,
         cell: (row) => (
           <GrView
-            onClick={() => navigateToDetails(row.id,row.category_id)}
+            onClick={() => navigateToDetails(row)}
             size={22}
             style={{ cursor: "pointer" }}
           />

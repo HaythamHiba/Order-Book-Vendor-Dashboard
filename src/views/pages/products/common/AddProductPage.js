@@ -3,7 +3,7 @@ import { Card, CardHeader, CardTitle, CardBody, Button } from "reactstrap";
 import { useTranslation } from "utility/language";
 import { Formik, Form } from "formik";
 import Tabs from "components/Tabs";
-import { getInitialValues, getValidationSchema } from "./utils/formSchema";
+import { getDataToSend, getInitialValues, getValidationSchema } from "./utils/formSchema";
 import { history } from "../../../../history";
 
 import { buildFormData } from "api/helpers";
@@ -39,14 +39,10 @@ const AddItemPage = ({ mutation }) => {
 
   const handleSubmit = (values) => {
     const data={...values}
+   const new_data= getDataToSend(data)
     const formData = new FormData();
-    buildFormData(formData, data);
-    addItem({
-      dataToSend:formData,
-      varsObj:{
-        categories:values.category_id
-      }
-    });
+    buildFormData(formData, new_data);
+    addItem( formData);
   };
 
   return (

@@ -15,12 +15,20 @@ import useSubCategoryOptions from "utility/selectionOptions/useSubCategoryOption
 const DetailsForm = ({ editMode = false }) => {
   const t = useTranslation();
   const formik = useFormikContext();
+  const {setFieldValue}=useFormikContext();
   const { preview, handleImageChange } = useImagePreview(
     formik.values.image_preview || null
   );
   const categoriesOptions=useCategoryOptions();
   const subcategoriesOptions=useSubCategoryOptions(false,formik.values.category_id);
 
+      const touched=formik.values.touched;
+      React.useEffect(()=>{
+        if(subcategoriesOptions.length===0&& touched){
+          setFieldValue("sub_category_id",undefined)
+        }
+      },[subcategoriesOptions,touched,setFieldValue])
+     
 
   return (
     <>
@@ -42,6 +50,8 @@ const DetailsForm = ({ editMode = false }) => {
                 name="category_id"
                 onChange={(opt) => {
                   formik.setFieldValue("category_id", opt.value);
+                  formik.setFieldValue("touched", true);
+                  
                 }}
                 required
               />
@@ -51,12 +61,24 @@ const DetailsForm = ({ editMode = false }) => {
                   <SelectField
                 label={t("subcategory")}
                 options={subcategoriesOptions}
-                name="subcategory_id"
+                name="sub_category_id"
                 onChange={(opt) => {
-                  formik.setFieldValue("subcategory_id", opt.value);
+                  formik.setFieldValue("sub_category_id", opt.value);
+                  
+                  
+                  
                 }}
                 
               />
+              }
+              {editMode&&formik.values.status===false&&
+                     <ValidatedField
+                     name="admin_note"
+                     label={t("admin_note")}
+                     placeholder={t("admin_note")}
+                     type="textarea"
+                     readOnly
+                   />
               }
             </Col>
            

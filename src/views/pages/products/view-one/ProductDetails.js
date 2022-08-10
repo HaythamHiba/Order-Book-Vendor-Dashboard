@@ -10,6 +10,8 @@ import {
 } from "../common/utils/formSchema";
 import useFormTabs from "../common/utils/useFormTabs";
 import { LoadingButton } from "components/input/LoadingButton";
+import { Badge } from "reactstrap";
+
 
 import { useUpdateDetailsMutation, useDeleteItem } from "api/items";
 import { buildFormData } from "api/helpers";
@@ -22,7 +24,7 @@ const ProductDetails = ({ product }) => {
   const t = useTranslation();
   const confirmOptions = useTranslatedLabels();
   const tabs = useFormTabs(true);
-  const updateDetailsMutation = useUpdateDetailsMutation(product?.category_id,product?.id);
+  const updateDetailsMutation = useUpdateDetailsMutation(product?.id);
   const deleteMutation = useDeleteItem();
   const isAuthorized = useIsAuthorized();
 
@@ -36,7 +38,6 @@ const ProductDetails = ({ product }) => {
     confirmAlert({
       onConfirm: () => {
         deleteMutation.mutate({
-          categories: product.category_id,
           items:product.id
         });
       },
@@ -54,16 +55,16 @@ const ProductDetails = ({ product }) => {
   return (
     <Card>
       <CardHeader className="d-flex justify-content-between align-items-center">
-        <CardTitle>{t("item")}</CardTitle>
-        {isAuthorized && (
-          <LoadingButton
-            color="danger"
-            isLoading={deleteMutation.isLoading}
-            onClick={handleDelete}
-          >
-            {t("delete")}
-          </LoadingButton>
-        )}
+        <CardTitle><h3>{t("item")}</h3>
+        
+        
+      
+          
+          </CardTitle>
+          <Badge color={product.status?"success":"danger"}>
+          {product.status?t("shown"):t("hidden")}
+          </Badge>
+      
       </CardHeader>
       <CardBody>
         <Formik
@@ -74,6 +75,7 @@ const ProductDetails = ({ product }) => {
           {(formik) => (
             <Form>
               <Tabs tabs={tabs} />
+              <div  className="d-flex   align-items-center  justify-content-between   m-1" style={{ gap: "20px" }}>
               {isAuthorized && (
                 <LoadingButton
                   type="submit"
@@ -83,6 +85,18 @@ const ProductDetails = ({ product }) => {
                   {t("save")}
                 </LoadingButton>
               )}
+                {isAuthorized && (
+          <LoadingButton
+            color="danger"
+            isLoading={deleteMutation.isLoading}
+            onClick={handleDelete}
+          >
+            {t("delete")}
+          </LoadingButton>
+        )}
+
+              </div>
+             
             </Form>
           )}
         </Formik>

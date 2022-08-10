@@ -17,8 +17,11 @@ export const getInitialValues = ( objectToEdit = null) => {
       },
       image:"",
       category_id:"",
-      subcategory_id:"",
+      sub_category_id:"",
       price:"",
+      admin_note:"",
+      status:true,
+      touched:false,
       
 
   }}
@@ -33,12 +36,15 @@ export const getInitialValues = ( objectToEdit = null) => {
       en:getLanguageAttr(objectToEdit.description,0)|| ""
     },
     category_id:objectToEdit?.category_id || "",
-    subcategory_id:objectToEdit?.subcategory_id || "",
+    sub_category_id:objectToEdit?.sub_category_id || "",
     price:objectToEdit?.price || 0,
 
 
     image: "",
-    image_preview:`${ImageURL}${objectToEdit.image}`
+    image_preview:`${ImageURL}${objectToEdit.image}`,
+    admin_note:objectToEdit?.admin_note || '',
+    status:objectToEdit?.status || false,
+    touched:false,
   };
 };
 
@@ -64,5 +70,12 @@ export const getValidationSchema = ( editMode = false) =>
   if (values.image === "") {
     delete data["image"];
   }
-    return data;
+  if (values.sub_category_id===""){
+    delete data["sub_category_id"]
+  }
+  if(values.sub_category_id===undefined ){
+    delete data["sub_category_id"]
+  }
+  return data
+
   }

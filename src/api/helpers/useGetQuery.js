@@ -4,12 +4,13 @@ import { useTranslation } from "utility/language";
 import { useAxios } from "./useAxios";
 import { validateSession } from "./validateSession";
 
-export const useGetQuery = (key, url, params = null, options = {}) => {
+export const useGetQuery = (key, url, params = null, options = {},keys) => {
   const axios = useAxios();
   const t = useTranslation();
+  const currKeys=keys?[key,keys]:key;
 
   return useQuery(
-    params ? [key, params] : key,
+    params ? [currKeys, params] : currKeys,
     async () => {
       const { data } = await axios.get(url, { params });
       return data.data;

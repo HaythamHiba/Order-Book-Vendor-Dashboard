@@ -40,7 +40,7 @@ export const login = ({ username, password }) => {
         }
       })
       .catch((err) => {
-        toast.error(err?.response?.message || "Failed To Login");
+        toast.error(err?.response?.data?.message || "Failed To Login");
         dispatch({
           type: "END_LOGIN",
         });
