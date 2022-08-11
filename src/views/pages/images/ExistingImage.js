@@ -2,11 +2,9 @@ import React from "react";
 import { Card, CardImg, CardBody } from "reactstrap";
 import IconButton from "@mui/material/IconButton";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { ImageURL } from "api/config";
-import { useIsAuthorized } from "redux/hooks/auth";
+import {  ImageURL } from "api/config";
 
 export const ExistingImage = ({ image, deletedImages = [], onDelete }) => {
-  const isAuthorized = useIsAuthorized();
 
   if (deletedImages.find((id) => id === image.id)) {
     return null;
@@ -22,7 +20,7 @@ export const ExistingImage = ({ image, deletedImages = [], onDelete }) => {
     >
       <CardImg
         alt="slider"
-        src={`${ImageURL}${image.image_name}`}
+        src={`${ImageURL}${image.image}`}
         top
         style={{
           height: "200px",
@@ -32,7 +30,6 @@ export const ExistingImage = ({ image, deletedImages = [], onDelete }) => {
           paddingTop: "1rem",
         }}
       />
-      {isAuthorized && (
         <CardBody>
           <div className="d-flex justify-content-center align-items-center">
             <IconButton onClick={onDelete}>
@@ -40,7 +37,7 @@ export const ExistingImage = ({ image, deletedImages = [], onDelete }) => {
             </IconButton>
           </div>
         </CardBody>
-      )}
+      
     </Card>
   );
 };

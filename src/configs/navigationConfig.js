@@ -8,7 +8,7 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { BiCategory } from "react-icons/bi";
 import {  MdOutlineCategory } from "react-icons/md";
 import RestaurantIcon from '@mui/icons-material/Restaurant';
-
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 const navigationConfig = [
   {
     id: "home",
@@ -31,6 +31,13 @@ const navigationConfig = [
     type: "item",
     icon: <BsShop size={20} />,
     navLink: "/my_shop",
+  },
+  {
+    id:"images",
+    title:"images",
+    type:"item",
+    icon:<InsertPhotoIcon size={20}/>,
+    navLink:"/images"
   },
   {
     id: "categories",
