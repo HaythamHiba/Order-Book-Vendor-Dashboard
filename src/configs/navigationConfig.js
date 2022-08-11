@@ -55,12 +55,13 @@ const navigationConfig = [
 
   },
 
+
   {
-    id: "discounts",
-    title: "discounts",
+    id: "offers",
+    title: "offers",
     type: "item",
     icon: <LocalOfferIcon size={20} />,
-    navLink: "/discounts"
+    navLink: "/offers"
   },
 
 ];

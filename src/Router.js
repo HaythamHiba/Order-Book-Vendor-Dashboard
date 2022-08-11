@@ -23,7 +23,7 @@ const AddProductPage = lazy(() =>
 const ViewAllProductsPage = lazy(() =>
   import("./views/pages/products/shops_products/ViewAllShopProductsPage")
 );
-
+const OffersPage=lazy(()=>import ('./views/pages/offers/OffersPage'))
 // Route-based code splitting
 const login = lazy(() => import("./views/pages/authentication/login/Login"));
 const error404 = lazy(() => import("./views/pages/misc/error/404"));
@@ -123,6 +123,12 @@ class AppRouter extends React.Component {
             exact
             path="/items/view-one/:id/category/:category_id"
             component={ViewOneItemPage}
+            isPrivate
+          />
+            <AppRoute
+            exact
+            path="/offers"
+            component={OffersPage}
             isPrivate
           />
         

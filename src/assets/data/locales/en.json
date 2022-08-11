@@ -169,6 +169,7 @@
   "image_sort": "Image Sort",
   "offers": "Offers",
   "add_offer": "Add Offer",
+  "edit_offer":"Edit Offer",
   "view_all_offers": "View All Offers",
   "offer_start_at": "Offer Starting Time",
   "offer_end_at": "Offer Ending Time",
@@ -182,6 +183,7 @@
   "offer_sort": "Offer Sort",
   "offer_main_image": "Offer Main Image",
   "offer": "Offer",
+  "offer_price":"Offer Price",
   "admin_note":"Admin Note",
   "services_views": "Services Views",
   "loading": "Loading...",
@@ -212,6 +214,7 @@
   "confirm_offer_order_message": "Are you sure you want to Accept this Order?",
   "cancel_offer_order": "Cancel Order",
   "cancel_offer_order_message": "Are you sure you want to Cancel this Order?",
+  "offer_image":"Offer Image",
   "clients": "Our Clients",
   "edit_client": "Edit client",
   "is_verified": "Is Verified",
@@ -344,7 +347,8 @@
     "subcategory": "Search for Sub Category",
     "item": "Search for Item",
     "shop": "Search for Shop",
-    "team_member": "Search for Team member"
+    "team_member": "Search for Team member",
+    "offer":"Search For Offer"
   },
   "new": {
     "password": "New Password",
@@ -376,7 +380,8 @@
     "invalid_phone": "Invalid Phone",
     "confirm_password": "Passwords Must Match",
     "min_number": "The Number Must Be Between 1 - 100",
-    "Max_number": "The Number Must Be Between 1 - 100"
+    "Max_number": "The Number Must Be Between 1 - 100",
+    "to_date":"The End Date Must Be Bigger Than Start Date"
   },
   "lang_1": "English",
   "lang_2": "Arabic",
