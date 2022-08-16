@@ -9,6 +9,7 @@ import { BiCategory } from "react-icons/bi";
 import {  MdOutlineCategory } from "react-icons/md";
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
+import TableRestaurantIcon from '@mui/icons-material/TableRestaurant';
 const navigationConfig = [
   {
     id: "home",
@@ -38,6 +39,14 @@ const navigationConfig = [
     type:"item",
     icon:<InsertPhotoIcon size={20}/>,
     navLink:"/images"
+  },
+  {
+    id:"tables",
+    title:"tables",
+    type:"item",
+    icon:<TableRestaurantIcon size={20}/>,
+    navLink:"/tables"
+
   },
   {
     id: "categories",

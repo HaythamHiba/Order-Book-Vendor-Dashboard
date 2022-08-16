@@ -187,6 +187,14 @@
   "offer_price":"Offer Price",
   "admin_note":"Admin Note",
   "services_views": "Services Views",
+
+  "tables":"Tables",
+  "add_table":"Add Table",
+  "table_image":"Table Image",
+  "max_number":"Max Quantit Of Table",
+  "min_number":"Min Quantity Of Table",
+
+  
   "loading": "Loading...",
   "_loading": {
     "delete": "Deleting..."
@@ -380,8 +388,8 @@
     "invalid_name": "Invalid Name",
     "invalid_phone": "Invalid Phone",
     "confirm_password": "Passwords Must Match",
-    "min_number": "The Number Must Be Between 1 - 100",
-    "Max_number": "The Number Must Be Between 1 - 100",
+    "min_number": "The Number Must Be Between Less Than Max",
+    "Max_number": "The Number Must Be Between Bigger Than Min",
     "to_date":"The End Date Must Be Bigger Than Start Date"
   },
   "lang_1": "English",
