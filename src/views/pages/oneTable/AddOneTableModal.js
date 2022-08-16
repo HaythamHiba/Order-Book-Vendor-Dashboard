@@ -4,7 +4,7 @@ import { Button } from "reactstrap";
 import { useTranslation } from "utility/language";
 import { LoadingButton } from "components/input/LoadingButton";
 import OneTableForm from "./OneTableForm";
-import { Formik, Form } from "formik";
+import { Formik, Form, useFormikContext } from "formik";
 import { useImagePreview } from "hooks";
 
 import {
@@ -13,19 +13,29 @@ import {
   
 } from "./formUtils";
 
-const AddOneTableModal = ({ isOpen, setIsOpen,marker,setMarkers }) => {
+const AddOneTableModal = ({ isOpen, setIsOpen,marker,setMarkers,markers }) => {
   const t = useTranslation();
-  const { preview, handleImageChange, setPreview } = useImagePreview(null);
+  const { preview, handleImageChange,setPreview } = useImagePreview(null);
+  const formik=useFormikContext();
+  
 
   const handleSubmit = (values) => {
+   
+    
+    const newArray=[...formik.values.markers,{...values}]
+    formik.setFieldValue("markers",newArray);
     setMarkers(prev=>[...prev,{
       
       ...values
       
     }])
+    
     setIsOpen(false);
-    setPreview(null);
+    setPreview(null)
+    
+   
   };
+
 
 
 

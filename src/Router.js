@@ -26,6 +26,7 @@ const ViewAllProductsPage = lazy(() =>
 const OffersPage=lazy(()=>import ('./views/pages/offers/OffersPage'))
 const ImagesPage=lazy(()=>import("./views/pages/images/ImagesPage"))
 const TablesPage=lazy(()=>import("./views/pages/tables/TablesPage"))
+const OneTableChartPage=lazy(()=>import('./views/pages/oneTable/OneTableChartPage'))
 // Route-based code splitting
 const login = lazy(() => import("./views/pages/authentication/login/Login"));
 const error404 = lazy(() => import("./views/pages/misc/error/404"));
@@ -133,6 +134,13 @@ class AppRouter extends React.Component {
           component={TablesPage}
           isPrivate
            />
+
+          <AppRoute
+            exact
+            path="/map/:id/chart"
+            component={OneTableChartPage}
+            isPrivate
+          />
           <AppRoute
             exact
             path="/items/view-one/:id/category/:category_id"

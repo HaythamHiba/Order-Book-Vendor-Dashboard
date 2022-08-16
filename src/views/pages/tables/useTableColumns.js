@@ -6,6 +6,8 @@ import Actions from "components/table/TableActions";
 import { getLanguageAttr } from "helpers/language";
 import HovarableImage from "components/HovarableImage";
 import {  ImageURL } from "api/config";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import { history } from "../../../history";
 
 const useTableColumns = (setEditModal, setObjectToEdit) => {
   const t = useTranslation();
@@ -47,15 +49,21 @@ const useTableColumns = (setEditModal, setObjectToEdit) => {
         sortable: false,
         center: true,
         cell: (row) => (
+          <>
+          <div style={{padding:"0 15px",cursor:"pointer"}}>
+
+            <AddLocationAltIcon onClick={()=>history.push(`map/${row.id}/chart`)} size={20}/>
+          </div>
           <Actions
             onEdit={() => {
               setEditModal(true);
               setObjectToEdit(row);
             }}
             onDelete={() => deleteMutation.mutate(  {
-              categories:row.id
+              maps:row.id
             } )}
           />
+          </>
         ),
       },
     ],

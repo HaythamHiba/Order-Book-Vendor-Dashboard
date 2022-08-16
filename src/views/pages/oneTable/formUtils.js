@@ -3,8 +3,8 @@ import * as Yup from "yup";
 export const getInitialValues = (objectToEdit = null,marker=null) => {
   if (!objectToEdit) {
     return {
-        max_number:"",
-        min_number:"",
+        max:"",
+        min:"",
       table_image:"",
       top:marker?.top || "",
       left:marker?.left||"",
@@ -13,8 +13,8 @@ export const getInitialValues = (objectToEdit = null,marker=null) => {
   }
 
   return {
-    max_number:objectToEdit?.max_number || "",
-        min_number:objectToEdit?.min_number || "",
+    max:objectToEdit?.max || "",
+        min:objectToEdit?.min || "",
         top:objectToEdit?.top || "",
         left:objectToEdit?.left||"",
         table_image:"",
@@ -23,9 +23,9 @@ export const getInitialValues = (objectToEdit = null,marker=null) => {
 
 export const getValidationSchema = (editMode = false) => {
   return Yup.object().shape({
-    min_number:Yup.number().required("required"),
-    max_number:Yup.number().min(
-        Yup.ref('min_number'),
+    min:Yup.number().required("required"),
+    max:Yup.number().min(
+        Yup.ref('min'),
         "validation.max_number"
     ).required("required"),
   

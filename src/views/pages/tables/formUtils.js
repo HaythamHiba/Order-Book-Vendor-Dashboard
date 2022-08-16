@@ -10,14 +10,7 @@ export const getInitialValues = (objectToEdit = null) => {
         en:""
       },
       image:"",
-      markers:[{
-        top:25.55931502535118,
-        left:10.932201450153933,
-        id:55,
-        table_image:"/storage/app/public/categories/TEJZe7YLCkAB9ZCkibMTLk2Af82xypASMk4SVmOY.png",
-        max_number:55,
-        min_number:15
-      }],
+    
       
     };
   }
@@ -28,7 +21,7 @@ export const getInitialValues = (objectToEdit = null) => {
       en:getLanguageAttr(objectToEdit.name,0)|| ""
     },
     image: "",
-    markers:objectToEdit?.markers || []
+ 
 
   };
 };

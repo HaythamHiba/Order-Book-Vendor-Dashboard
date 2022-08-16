@@ -7,9 +7,10 @@ import ImagePreview from "components/ImagePreview";
 
 
 
-const ImageWithTableForm = ({ preview, handleImageChange, editMode = false }) => {
+const OneTableForm = ({ preview, handleImageChange, editMode = false }) => {
   const t = useTranslation();
   const formik = useFormikContext();
+  
  
 
   return (
@@ -17,7 +18,7 @@ const ImageWithTableForm = ({ preview, handleImageChange, editMode = false }) =>
       <>
         <ValidatedField
           dir="ltr"
-          name="max_number"
+          name="max"
           label={`${t("max_number")}`}
           placeholder={`${t("max_number")}`}
           type="number"
@@ -25,7 +26,7 @@ const ImageWithTableForm = ({ preview, handleImageChange, editMode = false }) =>
         />
         <ValidatedField
           dir="ltr"
-          name="min_number"
+          name="min"
           label={`${t("min_number")}`}
           placeholder={`${t("min_number")}`}
           type="number"
@@ -51,4 +52,4 @@ const ImageWithTableForm = ({ preview, handleImageChange, editMode = false }) =>
   );
 };
 
-export default ImageWithTableForm;
+export default OneTableForm;

@@ -188,6 +188,10 @@
   "admin_note":"Admin Note",
   "services_views": "Services Views",
 
+  "maps":"Maps",
+  "map_name":"Map Name",
+  "map_image":"Map Image",
+
   "tables":"Tables",
   "add_table":"Add Table",
   "table_image":"Table Image",

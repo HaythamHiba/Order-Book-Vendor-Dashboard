@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Button } from "reactstrap";
 import { useTranslation } from "utility/language";
 import { LoadingButton } from "components/input/LoadingButton";
-import { useUpdateCategory } from "api/categories";
+import { useUpdateMap } from "api/maps";
 import CategoryForm from "./ImageWithTableForm";
 import { Formik, Form } from "formik";
 import { useImagePreview } from "hooks";
@@ -17,7 +17,7 @@ import {
 
 const EditTableModal = ({ isOpen, setIsOpen, objectToEdit, setObjectToEdit }) => {
   const t = useTranslation();
-  const { mutate: updateCategory, isLoading, isSuccess } = useUpdateCategory(objectToEdit?.id);
+  const { mutate: updateCategory, isLoading, isSuccess } = useUpdateMap(objectToEdit?.id);
 
   const category_image = objectToEdit?.image;
   const { preview, handleImageChange, setPreview } =

@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { Button } from "reactstrap";
 import { useTranslation } from "utility/language";
 import { LoadingButton } from "components/input/LoadingButton";
-import { useAddCategory } from "api/categories";
+import {  useAddMap } from "api/maps";
 import CategoryForm from "./ImageWithTableForm";
 import { Formik, Form } from "formik";
 import { useImagePreview } from "hooks";
@@ -16,10 +16,11 @@ import {
 
 const AddTableModal = ({ isOpen, setIsOpen }) => {
   const t = useTranslation();
-  const { mutate: addCategory, isSuccess, isLoading } = useAddCategory();
+  const { mutate: addCategory, isSuccess, isLoading } = useAddMap();
   const { preview, handleImageChange, setPreview } = useImagePreview(null);
 
   const handleSubmit = (values) => {
+    console.log(values)
     addCategory(getDataToSend(values));
   };
 

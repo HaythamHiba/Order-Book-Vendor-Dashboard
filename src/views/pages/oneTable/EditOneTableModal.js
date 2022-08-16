@@ -4,7 +4,7 @@ import { Button } from "reactstrap";
 import { useTranslation } from "utility/language";
 import { LoadingButton } from "components/input/LoadingButton";
 import OneTableForm from "./OneTableForm";
-import { Formik, Form } from "formik";
+import { Formik, Form, useFormikContext } from "formik";
 import { useImagePreview } from "hooks";
 import {  ImageURL } from "api/config";
 
@@ -13,24 +13,55 @@ import {
   getValidationSchema,
 } from "./formUtils";
 
-const EditOneTableModal = ({ isOpen, setIsOpen, objectToEdit, setObjectToEdit,marker,setMarkers,markers }) => {
+const EditOneTableModal = ({ isOpen, setIsOpen, objectToEdit, setMarkers,markers }) => {
   const t = useTranslation();
+  const formik=useFormikContext();
+
 
 
   const image = objectToEdit?.table_image;
-  console.log(image)
+
   const { preview, handleImageChange, setPreview } =
     useImagePreview(image);
 
   const handleSubmit = (values) => {
-    console.log(values.table_image)
+    const data={...values};
+    if(formik.values.table_image==="")
+    {
+      delete data["table_image"]
+    }
+    
       const newData= markers.map(obj=>{
-        if(obj.top===values.top&&obj.left===values.left){
-          return {...values}
+        if(obj.top===data.top&&obj.left===data.left){
+            if(obj.id){
+
+              return {...data,id:obj.id}
+            }
+            return {...data}
         }
         return obj
       })
     setMarkers(newData)
+    formik.setFieldValue("markers",newData)
+    setIsOpen(false);
+    setPreview(null);
+  };
+  const handledelete = () => {
+   
+ 
+      const newData=markers.filter(fliterderMarker=>fliterderMarker.top!==objectToEdit.top&&fliterderMarker.left!==objectToEdit.left)
+      const deletedMarker=markers.filter(fliterderMarker=>
+        fliterderMarker.top === objectToEdit.top &&
+        fliterderMarker.left === objectToEdit.left &&
+        fliterderMarker.id === objectToEdit.id)
+        
+        if(deletedMarker){
+
+          const deletedArr=[...formik.values.deleted_markers,deletedMarker[0].id]
+          formik.setFieldValue("deleted_markers",deletedArr)
+        }
+        setMarkers(newData)
+       
     setIsOpen(false);
     setPreview(null);
   };
@@ -64,6 +95,14 @@ const EditOneTableModal = ({ isOpen, setIsOpen, objectToEdit, setObjectToEdit,ma
                 />
               </ModalBody>
               <ModalFooter>
+              <LoadingButton
+                  type="button"
+                  color="primary"
+                  onClick={handledelete}
+                 
+                >
+                  {t("delete")}
+                </LoadingButton>
                 <Button
                   
                   onClick={() => setIsOpen(false)}
@@ -78,6 +117,7 @@ const EditOneTableModal = ({ isOpen, setIsOpen, objectToEdit, setObjectToEdit,ma
                 >
                   {t("save")}
                 </LoadingButton>
+                
               </ModalFooter>
             </Form>
           )}

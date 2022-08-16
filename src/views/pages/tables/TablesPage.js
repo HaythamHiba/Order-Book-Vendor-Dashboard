@@ -4,11 +4,11 @@ import { useTranslation } from "utility/language";
 import DataTable from "react-data-table-component";
 import "assets/scss/plugins/extensions/react-paginate.scss";
 import { Card, CardBody } from "reactstrap";
-import { useGetCategories } from "api/categories";
 import { AddButton } from "components/AddButton";
 import AddCatModal from "./AddTableModal";
 import EditCatModal from "./EditTableModal";
 import { TableSpinner } from "views/components/TableSpinner";
+import { useGetMaps } from "api/maps";
 
 
 const TablesPage = () => {
@@ -20,16 +20,16 @@ const TablesPage = () => {
   const [objectToEdit, setObjectToEdit] = React.useState(null);
 
   //Table Content -- Data + Columns
-  const { data, isLoading } = useGetCategories();
+  const { data, isLoading } = useGetMaps();
 
-  const categories = data?data : [];
+  const maps = data?data : [];
   const columns = useTableColumns(setEditModal, setObjectToEdit);
 
 
 
   return (
     <>
-      <h1>{t("categories")}</h1>
+      <h1>{t("maps")}</h1>
       <div className="d-flex align-items-center mb-1 justify-content-between">
         <div className="d-flex">
         <AddButton onClick={() => setAddModal(true)} />
@@ -40,7 +40,7 @@ const TablesPage = () => {
         <CardBody className="p-1">
           <DataTable
             columns={columns}
-            data={ categories}
+            data={ maps}
             progressPending={isLoading}
             progressComponent={<TableSpinner />}
             noDataComponent={<h6 className="my-4">{t("no_records")}</h6>}
