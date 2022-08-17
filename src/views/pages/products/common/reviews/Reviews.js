@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom';
 import { usePagination } from 'hooks/dataTable/usePagination';
 import PerPageDropdown from 'components/PerPageDropdown';
 import Select from "react-select";
-import { useReviewsStatusOptions } from 'utility/selectionOptions/useReviewsStautsOptions';
+import { useReviewsStatusOptions } from 'utility/selectionOptions/useReservationStatusOptions';
 import ReviewChangeStatusModal from './ReviewChangeStatusModal';
 
 

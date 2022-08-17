@@ -120,7 +120,7 @@ $wishlist-bg: #f6f6f6;
           display: none;
         }
         .select__menu {
-          z-index: 2;
+          z-index: 1000000000;
         }
       }
       .view-btn-option {

@@ -94,6 +94,8 @@
   "view_transaction": "عرض حوالة",
   "view_all": "عرض الكل",
   "pending": "قيد الانتظار",
+  "regect":"رفض",
+  "rejected":"مرفوض",
   "done": "منتهي",
   "canceled": "ملغي",
   "code": "الرمز",
@@ -185,10 +187,20 @@
   "offer_image":"صورة العرض",
 
   "tables":"الطاولات",
+  "table_number":"رقم الطاولة",
   "add_table":"إضافة طاولة",
+  "edit_table":"تعديل طاولة",
   "table_image":"صورة الطاولة",
   "max_number":"العدد الاكبر في الطاولة",
   "min_number":"العدد الأقل في الطاولة",
+  
+
+
+  "tables_reservations":"حجوزات الطاولات",
+  "reservations":"الحجز",
+  "number_of_people":"عدد الأشخاص",
+
+  "orders":"الطلبات",
 
   "maps":"الخرائط",
   "map_name":"اسم الخريطة",

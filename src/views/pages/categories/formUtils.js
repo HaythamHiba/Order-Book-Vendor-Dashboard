@@ -3,6 +3,7 @@ import { getLanguageAttr } from "helpers/language";
 import { buildFormData } from "api/helpers";
 
 export const getInitialValues = (objectToEdit = null) => {
+ 
   if (!objectToEdit) {
     return {
       name: {
@@ -10,6 +11,8 @@ export const getInitialValues = (objectToEdit = null) => {
         en:""
       },
       image:"",
+      admin_note:"",
+      status:"",
       
     };
   }
@@ -20,6 +23,9 @@ export const getInitialValues = (objectToEdit = null) => {
       en:getLanguageAttr(objectToEdit.name,0)|| ""
     },
     image: "",
+    status:objectToEdit?.status ,
+    admin_note:objectToEdit?.admin_note || "",
+
 
   };
 };

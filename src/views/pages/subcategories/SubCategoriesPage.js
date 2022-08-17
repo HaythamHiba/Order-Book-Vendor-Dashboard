@@ -10,14 +10,13 @@ import { AddButton } from "components/AddButton";
 import AddSubCatModal from "./AddSubCatModal";
 import EditSubCatModal from "./EditSubCatModal";
 import { TableSpinner } from "views/components/TableSpinner";
-import { useIsAuthorized } from "redux/hooks/auth";
 import { useGetSubcategories } from "api/subcategories";
 import Select from "react-select";
 import useCategoryOptions from "utility/selectionOptions/useCategoryOptions";
 
 const SubCategoriesPage = () => {
   const t = useTranslation();
-  const isAuthorized = useIsAuthorized();
+  
 
   const [category,setSelectedCategory]=React.useState(null);
   const categoriesOptions=useCategoryOptions();
@@ -56,7 +55,7 @@ const SubCategoriesPage = () => {
       <h1>{t("subcategories")}</h1>
       <div className="d-flex align-items-center mb-1 justify-content-between">
         <div className="d-flex">
-          {isAuthorized && <AddButton onClick={() => setAddModal(true)} />}
+          <AddButton onClick={() => setAddModal(true)} />
         </div>
         <div style={{ width: "15rem" }} className="mr-1">
            

@@ -35,16 +35,7 @@ const DetailsForm = ({ editMode = false }) => {
       <Row className="mb-1" xs={1} sm={1} md={1} lg={2} xl={2}>
         <Col lg={7} xl={7}>
 
-          
-            
-              <ValidatedField
-                name="price"
-                label={t("price")}
-                placeholder={t("price")}
-                type="number"
-                isRequired
-              />
-              <SelectField
+        <SelectField
                 label={t("category")}
                 options={categoriesOptions}
                 name="category_id"
@@ -71,6 +62,15 @@ const DetailsForm = ({ editMode = false }) => {
                 
               />
               }
+            
+              <ValidatedField
+                name="price"
+                label={t("price")}
+                placeholder={t("price")}
+                type="number"
+                isRequired
+              />
+          
               {editMode&&formik.values.status===false&&
                      <ValidatedField
                      name="admin_note"
@@ -82,9 +82,6 @@ const DetailsForm = ({ editMode = false }) => {
               }
             </Col>
            
-    
-    
-        
         <Col lg={5} xl={5}>
           <ValidatedField
             id="image"
@@ -100,6 +97,9 @@ const DetailsForm = ({ editMode = false }) => {
           />
           <ImagePreview height={300} preview={preview} />
         </Col>
+    
+    
+        
       </Row>
     
     </>

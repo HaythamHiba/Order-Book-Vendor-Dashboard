@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, ModalBody, ModalHeader } from 'reactstrap'
 import { useTranslation } from 'utility/language'
-import ReviewStatusActionController from 'components/ReviewStatusActionController'
+import ReviewStatusActionController from 'components/ReservationStatusActionController'
 export default function ReviewChangeStatusModal({ objectToEdit, reviewsMutation, isOpen, setIsOpen }) {
     const t = useTranslation();
     React.useEffect(() => {

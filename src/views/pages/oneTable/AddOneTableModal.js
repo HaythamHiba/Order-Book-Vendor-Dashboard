@@ -39,6 +39,7 @@ const AddOneTableModal = ({ isOpen, setIsOpen,marker,setMarkers,markers }) => {
 
 
 
+
   return (
     <Modal centered isOpen={isOpen} size="lg">
       <ModalHeader toggle={() => setIsOpen((v) => !v)}>

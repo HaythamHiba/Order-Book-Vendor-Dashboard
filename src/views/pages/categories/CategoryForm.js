@@ -8,7 +8,7 @@ import { Row, Col } from "reactstrap";
 const CategoryForm = ({ preview, handleImageChange, editMode = false }) => {
   const t = useTranslation();
   const formik = useFormikContext();
-
+  
   return (
     <Row xs={1} sm={1} md={1} lg={2} xl={2}>
       <Col>
@@ -24,6 +24,16 @@ const CategoryForm = ({ preview, handleImageChange, editMode = false }) => {
           label={`${t("category_name")} (${t("ar")})`}
           placeholder={`${t("category_name")} (${t("ar")})`}
         />
+          {
+
+                editMode&&formik.values.status===false &&<ValidatedField
+                dir="rtl"
+                name="admin_note"
+                label={`${t("admin_note")}`}
+                placeholder={`${t("admin_note")}`}
+                readOnly
+                />
+          } 
    
       </Col>
       <Col>

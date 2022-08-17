@@ -8,6 +8,8 @@ export const getInitialValues = (objectToEdit = null,marker=null) => {
       table_image:"",
       top:marker?.top || "",
       left:marker?.left||"",
+      qrCode:"",
+      table_number:"",
       
     };
   }
@@ -18,6 +20,9 @@ export const getInitialValues = (objectToEdit = null,marker=null) => {
         top:objectToEdit?.top || "",
         left:objectToEdit?.left||"",
         table_image:"",
+        image_toView:objectToEdit?.table_image || "",
+        qrCode:objectToEdit?.qrCode || "",
+        table_number:objectToEdit?.table_number||"",
   };
 };
 
@@ -28,7 +33,7 @@ export const getValidationSchema = (editMode = false) => {
         Yup.ref('min'),
         "validation.max_number"
     ).required("required"),
-  
+    table_number:Yup.number().required("required"),
     ...(!editMode && {
       table_image: Yup.mixed().required("required"),
     }),

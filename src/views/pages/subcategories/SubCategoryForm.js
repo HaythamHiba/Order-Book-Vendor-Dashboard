@@ -16,6 +16,16 @@ const SubCategoryForm = ({ preview, handleImageChange, editMode = false }) => {
   return (
     <Row xs={1} sm={1} md={1} lg={2} xl={2}>
       <Col>
+      <SelectField
+          label={t("category")}
+          options={categoriesOptions}
+          name="parent_id"
+          onChange={(opt) => {
+            formik.setFieldValue("parent_id", opt.value);
+          }}
+          required
+        />
+        
         <ValidatedField
           dir="ltr"
           name="name[en]"
@@ -28,15 +38,16 @@ const SubCategoryForm = ({ preview, handleImageChange, editMode = false }) => {
           label={`${t("category_name")} (${t("ar")})`}
           placeholder={`${t("category_name")} (${t("ar")})`}
         />
-         <SelectField
-          label={t("category")}
-          options={categoriesOptions}
-          name="parent_id"
-          onChange={(opt) => {
-            formik.setFieldValue("parent_id", opt.value);
-          }}
-          required
-        />
+      
+             {
+              formik.values.status===false&&    <ValidatedField
+              dir="rtl"
+              name="admin_note"
+              label={`${t("admin_note")}`}
+              placeholder={`${t("admin_note")}`}
+              readOnly
+            />
+            }
    
       </Col>
       <Col>

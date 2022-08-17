@@ -15,7 +15,7 @@ import { buildFormData } from 'api/helpers';
 
 export default function OneTableChartPage() {
     const {id}=useParams();
-    const {data,isLoading,isSuccess}=useGetMapTables(id);
+    const {data,isLoading,isSuccess,refetch}=useGetMapTables(id);
     const mutation=useUpdateMapTables(id);
     const lang=useBackendLanguageCode();
     const t=useTranslation();
@@ -38,8 +38,14 @@ export default function OneTableChartPage() {
            const formData = new FormData();
            buildFormData(formData, values);
            mutation.mutate(formData);
+           
         
       }
+      React.useEffect(() => {
+        if (mutation.isSuccess) {
+          refetch()
+        }
+      }, [mutation,refetch]);
   return (
    isSuccess&& <>
     

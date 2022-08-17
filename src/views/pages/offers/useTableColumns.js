@@ -18,7 +18,7 @@ const useTableColumns = (setEditModal, setObjectToEdit) => {
         name:t("status"),
         sortable: false,
         center: true,
-        cell:(row)=><Badge color={row.status?"secondary":"danger"}>{ row.status?t("active"):t("inactive")}</Badge>
+        cell:(row)=><Badge color={row.status?"success":"danger"}>{ row.status?t("active"):t("inactive")}</Badge>
       },
      
       {

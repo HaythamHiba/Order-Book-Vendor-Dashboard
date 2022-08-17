@@ -10,6 +10,8 @@ export const getInitialValues = (objectToEdit = null) => {
         en:""
       },
       image:"",
+      status:"",
+      admin_note:""
     
       
     };
@@ -21,6 +23,8 @@ export const getInitialValues = (objectToEdit = null) => {
       en:getLanguageAttr(objectToEdit.name,0)|| ""
     },
     image: "",
+    status:objectToEdit?.status,
+    admin_note:objectToEdit?.admin_note || "",
  
 
   };

@@ -3,7 +3,7 @@ import { useTranslation } from "utility/language";
 import ReactStars from "react-rating-stars-component";
 import Actions from "components/table/TableActions";
 
-import ReviewStatus from "components/ReviewStatus";
+import ReviewStatus from "components/ReservationStatus";
 
 
 const useTableColumns = (setObjectToEdit, setOpen) => {

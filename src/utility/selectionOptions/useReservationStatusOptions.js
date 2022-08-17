@@ -1,6 +1,6 @@
 import { useTranslation } from "utility/language"
 
-export const useReviewsStatusOptions = () => {
+export const useReservationStatusOptions = () => {
     const t = useTranslation();
     let options = [{
         value: "",
@@ -17,6 +17,14 @@ export const useReviewsStatusOptions = () => {
     {
         value: "rejected",
         label: t("rejected")
+    },
+    {
+        value: "finished",
+        label: t("finished")
+    },
+    {
+        value: "cancelled",
+        label: t("canceled")
     },
     ];
     return options;

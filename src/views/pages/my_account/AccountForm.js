@@ -1,41 +1,39 @@
+import { ImageURL } from 'api/config';
+import ImagePreview from 'components/ImagePreview';
 import { ValidatedField } from 'components/input'
+import { useFormikContext } from 'formik';
 import React from 'react'
 import { useTranslation } from 'utility/language'
 export default function AccountForm() {
     const t = useTranslation();
+    const formik=useFormikContext();
     return (
         <>
             <ValidatedField
-                name="full_name"
-                label={t("full_name")}
-                placeholder={t("full_name")}
+                name="username"
+                label={t("username")}
+                placeholder={t("username")}
                 
             />
-            <ValidatedField
-                name="email"
-                label={t("email")}
-                placeholder={t("email")}
+                   <ValidatedField
+                name="name_ar"
+                label={`${t("name")} (${t("ar")})`}
+                placeholder={`${t("name")} (${t("ar")})`}
                 
             />
+            
             <ValidatedField
-                name="phone"
-                label={t("phone")}
-                placeholder={t("phone")}
+                name="name_en"
+                label={`${t("name")} (${t("en")})`}
+                placeholder={`${t("name")} (${t("en")})`}
                 
             />
-            <ValidatedField
-                name="password"
-                label={t("new.password")}
-                placeholder={t("new.password")}
-                type="password"
+            
 
-            />
-            <ValidatedField
-                name="password_confirmation"
-                label={t("new.confirm_password")}
-                placeholder={t("new.confirm_password")}
-                type="password"
-            />
+         
+            
+      
+        <ImagePreview preview={`${ImageURL}${formik.values.logo}`} />
         </>
     )
 }

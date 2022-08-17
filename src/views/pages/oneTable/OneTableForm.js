@@ -4,6 +4,7 @@ import { useTranslation } from "utility/language";
 import { useFormikContext } from "formik";
 
 import ImagePreview from "components/ImagePreview";
+import { ImageURL } from "api/config";
 
 
 
@@ -16,8 +17,18 @@ const OneTableForm = ({ preview, handleImageChange, editMode = false }) => {
   return (
     
       <>
+      
+      
+      <ValidatedField
+        
+        name="table_number"
+        label={`${t("table_number")}`}
+        placeholder={`${t("table_number")}`}
+        type="number"
+
+      />
         <ValidatedField
-          dir="ltr"
+        
           name="max"
           label={`${t("max_number")}`}
           placeholder={`${t("max_number")}`}
@@ -25,7 +36,7 @@ const OneTableForm = ({ preview, handleImageChange, editMode = false }) => {
 
         />
         <ValidatedField
-          dir="ltr"
+        
           name="min"
           label={`${t("min_number")}`}
           placeholder={`${t("min_number")}`}
@@ -40,9 +51,16 @@ const OneTableForm = ({ preview, handleImageChange, editMode = false }) => {
           onChange={(e) => {
             handleImageChange(e);
             formik.setFieldValue("table_image", e.target.files[0]);
+            formik.setFieldValue("image_toView", e.target.files[0]);
           }}
         />
         <ImagePreview preview={preview} />
+        {
+          formik.values.qrCode!==""&&<>
+          <ImagePreview preview={`${ImageURL}${formik.values.qrCode}`}/>
+          
+          </> 
+        }
    
         
         

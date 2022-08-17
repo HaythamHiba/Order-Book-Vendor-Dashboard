@@ -42,6 +42,16 @@ const ImageWithTableForm = ({ preview, handleImageChange, editMode = false }) =>
           }}
         />
             <ImagePreview preview={preview} />
+
+            {
+              formik.values.status===false&&    <ValidatedField
+              dir="rtl"
+              name="admin_note"
+              label={`${t("admin_note")}`}
+              placeholder={`${t("admin_note")}`}
+              readOnly
+            />
+            }
              </>
         
     

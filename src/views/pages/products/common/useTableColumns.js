@@ -6,6 +6,7 @@ import HovarableImage from "components/HovarableImage";
 import { ImageURL } from "api/config";
 import { GrView } from "react-icons/gr";
 import { getLanguageAttr } from "helpers/language";
+import { Badge } from "reactstrap";
 
 const navigateToDetails = (row) => {
    const item_id=row.id;
@@ -21,6 +22,12 @@ const useTableColumns = ({ toggleMutation}) => {
 
   return useMemo(
     () => [
+      {
+        name:t("status"),
+        sortable: false,
+        center: true,
+        cell:(row)=><Badge color={row.status?"success":"danger"}>{ row.status?t("active"):t("inactive")}</Badge>
+      },
 
       {
         name: t("image"),

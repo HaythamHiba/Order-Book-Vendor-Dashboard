@@ -2,7 +2,6 @@ import React from "react";
 
 import { Home } from "react-feather";
 
-import { BsShop } from "react-icons/bs";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { BiCategory } from "react-icons/bi";
@@ -10,6 +9,7 @@ import {  MdOutlineCategory } from "react-icons/md";
 import RestaurantIcon from '@mui/icons-material/Restaurant';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 import TableRestaurantIcon from '@mui/icons-material/TableRestaurant';
+import KitchenIcon from '@mui/icons-material/Kitchen';
 const navigationConfig = [
   {
     id: "home",
@@ -26,13 +26,7 @@ const navigationConfig = [
     navLink: "/myAccount"
   },
 
-  {
-    id: "shop",
-    title: "my_shop",
-    type: "item",
-    icon: <BsShop size={20} />,
-    navLink: "/my_shop",
-  },
+
   {
     id:"images",
     title:"images",
@@ -46,6 +40,22 @@ const navigationConfig = [
     type:"item",
     icon:<TableRestaurantIcon size={20}/>,
     navLink:"/tables"
+
+  },
+  {
+    id:"tables_reservations",
+    title:"tables_reservations",
+    type:"item",
+    icon:<TableRestaurantIcon size={20}/>,
+    navLink:"/tables_reservations"
+
+  },
+  {
+    id:"orders",
+    title:"orders",
+    type:"item",
+    icon:<KitchenIcon size={20}/>,
+    navLink:"/orders"
 
   },
   {

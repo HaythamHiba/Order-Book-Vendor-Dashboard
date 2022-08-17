@@ -6,6 +6,7 @@ import { getLanguageAttr } from "helpers/language";
 import HovarableImage from "components/HovarableImage";
 import {  ImageURL } from "api/config";
 import { useDeleteSubcategory } from "api/subcategories";
+import { Badge } from "reactstrap";
 
 const useTableColumns = (setEditModal, setObjectToEdit) => {
   const t = useTranslation();
@@ -13,6 +14,12 @@ const useTableColumns = (setEditModal, setObjectToEdit) => {
 
   return useMemo(
     () => [
+      {
+        name:t("status"),
+        sortable: false,
+        center: true,
+        cell:(row)=><Badge color={row.status?"success":"danger"}>{ row.status?t("active"):t("inactive")}</Badge>
+      },
      
       {
         name: t("image"),

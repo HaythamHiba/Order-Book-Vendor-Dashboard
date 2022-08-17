@@ -1,16 +1,14 @@
 import React, { useMemo } from "react";
-import { useDeleteCategory } from "api/categories";
 import { useTranslation } from "utility/language";
 import Actions from "components/table/TableActions";
 // import { history } from "../../../history";
-import { getLanguageAttr } from "helpers/language";
 import HovarableImage from "components/HovarableImage";
 import {  ImageURL } from "api/config";
+import ReservationStatus from "components/ReservationStatus";
 import { Badge } from "reactstrap";
 
 const useTableColumns = (setEditModal, setObjectToEdit) => {
   const t = useTranslation();
-  const deleteMutation = useDeleteCategory();
 
   return useMemo(
     () => [
@@ -19,7 +17,6 @@ const useTableColumns = (setEditModal, setObjectToEdit) => {
         sortable: false,
         center: true,
         cell:(row)=><Badge color={row.status?"success":"danger"}>{ row.status?t("active"):t("inactive")}</Badge>
-
       },
      
       {
@@ -28,26 +25,56 @@ const useTableColumns = (setEditModal, setObjectToEdit) => {
         center: true,
         cell: (row) => (
           <HovarableImage
-            id={`category_image_${row.id}`}
-            src={`${ImageURL}${row.image}`}
+            id={`rservation_table_image_${row.id}`}
+            src={`${ImageURL}${row.table_image}`}
             width="35"
           />
         ),
       },
       {
-        name: `${t("name")} (${t("en")})`,
+        name: `${t("table_number")}`,
         sortable: false,
         center: true,
-        cell: (row) =>
-          getLanguageAttr(row.name, 0),
+        cell: (row) =><>
+        
+        {row.table_number}
+        </>
       },
       {
-        name: `${t("name")} (${t("ar")})`,
+        name: `${t("number_of_people")}`,
+        sortable: false,
+        center: true,
+        cell: (row) =><>
+        
+        {row.number_of_people}
+        </>
+      },
+      {
+        name: `${t("username")}`,
+        sortable: false,
+        center: true,
+        cell: (row) =><>
+        {row.user.name}
+        
+        </>
+      },
+      {
+        name: `${t("userPhone")}`,
+        sortable: false,
+        center: true,
+        cell: (row) =><>
+        
+        {row.user.phone_number}
+        </>
+      },
+      {
+        name: `${t("status")}`,
         sortable: false,
         center: true,
         cell: (row) =>
-        getLanguageAttr(row.name, 1),
+        <ReservationStatus reservationStatus={row.status} />
       },
+      
     
      
       {
@@ -60,14 +87,12 @@ const useTableColumns = (setEditModal, setObjectToEdit) => {
               setEditModal(true);
               setObjectToEdit(row);
             }}
-            onDelete={() => deleteMutation.mutate(  {
-              categories:row.id
-            } )}
+              showDelete={false}
           />
         ),
       },
     ],
-    [t, deleteMutation, setEditModal, setObjectToEdit]
+    [t, setEditModal, setObjectToEdit]
   );
 };
 

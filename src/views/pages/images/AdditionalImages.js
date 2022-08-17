@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardHeader, CardTitle, CardBody } from "reactstrap";
+import { Card, CardHeader, CardTitle, CardBody, Badge } from "reactstrap";
 import { useTranslation } from "utility/language";
 import AdditionalImagesForm from "./AdditionalImagesForm";
 import { Formik, Form } from "formik";
@@ -47,7 +47,28 @@ const AdditionalImages = ({ data, mutation }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{t("additional_images")}</CardTitle>
+        <CardTitle>
+          
+         <h1>
+          
+         {t("additional_images")}
+          </h1>
+      
+          </CardTitle>
+          <div  style={{width:"100%",float:"right"}}>
+
+          <Badge color={data.status?"success":"danger"}>{ data[0].status?t("active"):t("inactive")}</Badge>
+
+                    {
+                      data[0].status===false?<div >
+
+                      <p >
+                            {data[0].admin_note}
+                      </p>
+                      </div>:null
+
+                    }
+          </div>
       </CardHeader>
       <CardBody>
         <div className="d-flex flex-wrap">

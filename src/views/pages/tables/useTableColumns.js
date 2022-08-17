@@ -8,6 +8,7 @@ import HovarableImage from "components/HovarableImage";
 import {  ImageURL } from "api/config";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { history } from "../../../history";
+import { Badge } from "reactstrap";
 
 const useTableColumns = (setEditModal, setObjectToEdit) => {
   const t = useTranslation();
@@ -15,6 +16,14 @@ const useTableColumns = (setEditModal, setObjectToEdit) => {
 
   return useMemo(
     () => [
+      
+        {
+          name:t("status"),
+          sortable: false,
+          center: true,
+          cell:(row)=><Badge color={row.status?"success":"danger"}>{ row.status?t("active"):t("inactive")}</Badge>
+        
+      },
      
       {
         name: t("image"),

@@ -11,6 +11,7 @@ export const getInitialValues = (objectToEdit = null) => {
       },
       image:"",
       parent_id:"",
+      status:''
       
     };
   }
@@ -22,6 +23,7 @@ export const getInitialValues = (objectToEdit = null) => {
     },
     image: "",
     parent_id:objectToEdit?.parent_id || "",
+    status:objectToEdit?.status ,
 
   };
 };

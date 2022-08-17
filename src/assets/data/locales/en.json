@@ -84,6 +84,8 @@
   "view_transaction": "View Transaction",
   "view_all": "View All",
   "pending": "Pending",
+  "rejected":"Rejected",
+  "reject":"Reject",
   "done": "Done",
   "canceled": "Canceled",
   "code": "Code",
@@ -193,10 +195,18 @@
   "map_image":"Map Image",
 
   "tables":"Tables",
+  "table_number":"Table Number",
   "add_table":"Add Table",
+  "edit_table":"Edit Table",
   "table_image":"Table Image",
   "max_number":"Max Quantit Of Table",
   "min_number":"Min Quantity Of Table",
+
+  "tables_reservations":"Tables Reservations",
+  "reservations":"Reservations",
+  "number_of_people":"Number Of People",
+
+  "orders":"Orders",
 
   
   "loading": "Loading...",
